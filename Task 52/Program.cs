@@ -8,6 +8,15 @@
 8 4 2 4
 Среднее арифметическое каждого столбца: 4,6; 5,6; 3,6; 3. */
 
+
+Console.Clear();
+Console.Write("Введите размеры матрицы: ");
+int[] size = Console.ReadLine().Split(" ").Select(x => int.Parse(x)).ToArray();
+int[,] matrix = new int[size[0], size[1]];
+Console.WriteLine("Начальная матрица: ");
+InputMatrix(matrix);
+Console.Write("Результат: ");
+
 void InputMatrix(int[,] matrix)
 {
     for (int i = 0; i < matrix.GetLength(0); i++)
@@ -21,25 +30,13 @@ void InputMatrix(int[,] matrix)
     }
 }
 
-int ReleaseMatrix(int[,] matrix)
+for (int j = 0; j < matrix.GetLength(1); j++)
 {
-    int sum = 0;
+    double sum = 0;
     for (int i = 0; i < matrix.GetLength(0); i++)
     {
-        for (int j = 0; j < matrix.GetLength(1); j++)
-        {
-            if (i == j)
-                sum += matrix[i, j];
-        }
+        sum += matrix[i, j];
     }
-    return sum;
+    Console.Write($"{ sum / matrix.GetLength(0)} ");
 }
-
-Console.Clear();
-Console.Write("Введите размеры матрицы: ");
-int[] size = Console.ReadLine().Split(" ").Select(x => int.Parse(x)).ToArray();
-int[,] matrix = new int[size[0], size[1]];
-Console.WriteLine("Начальная матрица: ");
-InputMatrix(matrix);
-Console.Write("Результат: ");
-Console.WriteLine(ReleaseMatrix(matrix));
+Console.ReadLine();
